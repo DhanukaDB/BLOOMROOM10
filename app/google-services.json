@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "697774598046",
+    "project_id": "the-bloom-room-10",
+    "storage_bucket": "the-bloom-room-10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697774598046:android:d6b73806219024f3e7588f",
+        "android_client_info": {
+          "package_name": "com.example.bloomroom10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBApf-shAO_wseNk8h1caggJyAbJkgcYjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

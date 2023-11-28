@@ -17,6 +17,7 @@ public class AdminPage extends AppCompatActivity {
 
         // Find the "Create Category" button by its ID
         Button createCategoryButton = findViewById(R.id.cd_id02);
+        Button manageCategoryButton = findViewById(R.id.cd_id04);
 
         // Set an OnClickListener for the button
         createCategoryButton.setOnClickListener(new View.OnClickListener() {
@@ -24,6 +25,14 @@ public class AdminPage extends AppCompatActivity {
             public void onClick(View view) {
                 // Define the logic to start the new activity (ActivityCreateCategory)
                 Intent intent = new Intent(AdminPage.this, CreateCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        manageCategoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminPage.this, ViewCategory.class);
                 startActivity(intent);
             }
         });

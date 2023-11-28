@@ -40,4 +40,10 @@
         android:layout_height="wrap_content"
         android:text="Manage Flowers" />
 
+    <Button
+        android:id="@+id/cd_id04"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Manage Categories" />
+
 </LinearLayout>

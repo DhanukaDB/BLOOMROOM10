@@ -9,52 +9,78 @@
         android:id="@+id/textViewFlowerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flower Name" />
+        android:text="Flower Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/textViewFlowerDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flower Description" />
+        android:text="Flower Description"
+        android:textSize="14sp"
+        android:textColor="#666699" />
 
     <TextView
         android:id="@+id/textViewFlowerPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Price" />
+        android:text="Price: $10.99"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/textViewFlowerCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:text="Category: Roses"
+        android:textSize="14sp"
+        android:textColor="#666699" />
 
     <TextView
         android:id="@+id/textViewFlowerOffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Offer" />
+        android:text="Special Offer: Buy 2, Get 1 Free"
+        android:textSize="14sp"
+        android:textColor="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/imageViewFlowerImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/images" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+    android:layout_marginTop="16dp"
+    android:src="@drawable/images"
+    android:scaleType="centerCrop" />
 
 
     <!-- Add other TextViews for additional fields -->
 
-    <Button
-        android:id="@+id/buttonEdit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete" />
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
 
 </LinearLayout>

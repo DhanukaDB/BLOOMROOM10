@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewFlower extends AppCompatActivity {
+public class UserViewFlower extends AppCompatActivity {
 
     private RecyclerView recyclerViewFlowers;
     private FlowerAdapter flowerAdapter;
@@ -26,24 +26,16 @@ public class ViewFlower extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_flower);
 
         recyclerViewFlowers = findViewById(R.id.recyclerViewFlowers);
         recyclerViewFlowers.setLayoutManager(new LinearLayoutManager(this));
         flowerList = new ArrayList<>();
-        db = FirebaseFirestore.getInstance();
-
-        boolean isAdmin = getIntent().getBooleanExtra("isAdmin", false);
-
         flowerAdapter = new FlowerAdapter(this, flowerList);
         recyclerViewFlowers.setAdapter(flowerAdapter);
 
-        if (isAdmin) {
-            // If admin, set the isAdmin property in the adapter
-            flowerAdapter.setIsAdmin(true);
-        }
+        db = FirebaseFirestore.getInstance();
 
         // Check if an intent with category extra is received
         if (getIntent().hasExtra("category")) {
@@ -64,7 +56,7 @@ public class ViewFlower extends AppCompatActivity {
             @Override
             public void onDeleteClick(int position) {
                 // Handle delete click
-                deleteFlower(position);
+
             }
 
             @Override
@@ -90,7 +82,7 @@ public class ViewFlower extends AppCompatActivity {
                         flowerAdapter.notifyDataSetChanged();
                     } else {
                         // Handle errors
-                        Toast.makeText(ViewFlower.this, "Failed to fetch flowers", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserViewFlower.this, "Failed to fetch flowers", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -172,30 +164,7 @@ public class ViewFlower extends AppCompatActivity {
         builder.show();
     }
 
-    // Delete a flower at the specified position
-    private void deleteFlower(int position) {
-        Flower flowerToDelete = flowerList.get(position);
 
-        // Remove the flower from the list
-        flowerList.remove(position);
-        flowerAdapter.notifyItemRemoved(position);
-
-        // Delete the flower from Firestore
-        db.collection("flowers")
-                .document(flowerToDelete.getId())
-                .delete()
-                .addOnSuccessListener(aVoid -> {
-                    // Handle successful deletion
-                    Toast.makeText(ViewFlower.this, "Flower deleted successfully", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Handle deletion failure
-                    Toast.makeText(ViewFlower.this, "Failed to delete flower", Toast.LENGTH_SHORT).show();
-                    // If deletion fails, you might want to add the flower back to the list
-                    flowerList.add(position, flowerToDelete);
-                    flowerAdapter.notifyItemInserted(position);
-                });
-    }
 
     private void filterFlowersByCategory(String category) {
         List<Flower> filteredList = new ArrayList<>();

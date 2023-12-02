@@ -16,6 +16,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
     private List<Flower> flowers;
     private Context context;
     private OnItemClickListener mListener;
+    private boolean isAdmin;
 
     public interface OnItemClickListener {
         void onEditClick(int position);
@@ -32,6 +33,11 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
     public FlowerAdapter(Context context, List<Flower> flowers) {
         this.context = context;
         this.flowers = flowers;
+        this.isAdmin = false;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     @NonNull
@@ -50,6 +56,14 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         holder.textViewFlowerOffer.setText(flower.getOfferPercentage());
         holder.textViewFlowerCategory.setText(flower.getFlowerCategory());
         // Set other fields as needed
+
+        if (isAdmin) {
+            holder.buttonEdit.setVisibility(View.VISIBLE);
+            holder.buttonDelete.setVisibility(View.VISIBLE);
+        } else {
+            holder.buttonEdit.setVisibility(View.GONE);
+            holder.buttonDelete.setVisibility(View.GONE);
+        }
 
         // Set click listeners for edit and delete buttons
         holder.buttonEdit.setOnClickListener(view -> {

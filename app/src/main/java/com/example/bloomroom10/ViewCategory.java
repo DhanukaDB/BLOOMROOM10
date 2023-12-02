@@ -1,5 +1,6 @@
 package com.example.bloomroom10;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,25 @@ public class ViewCategory extends AppCompatActivity {
                 // Handle delete click
                 deleteCategory(position);
             }
+
+            @Override
+            public void onCategoryClick(int position) {
+                // Handle category click
+                navigateToFlowersByCategory(position);
+            }
         });
+    }
+
+    private void navigateToFlowersByCategory(int position) {
+        Category selectedCategory = categoryList.get(position);
+
+        if (selectedCategory != null) {
+            String category = selectedCategory.getName();
+            // Navigate to ViewFlower with the selected category
+            Intent intent = new Intent(this, ViewFlower.class);
+            intent.putExtra("category", category);
+            startActivity(intent);
+        }
     }
 
     private void fetchCategories() {

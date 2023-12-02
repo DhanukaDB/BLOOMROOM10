@@ -1,5 +1,6 @@
 package com.example.bloomroom10;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class ViewFlower extends AppCompatActivity {
     private FlowerAdapter flowerAdapter;
     private List<Flower> flowerList;
     private FirebaseFirestore db;
+    private String selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,14 @@ public class ViewFlower extends AppCompatActivity {
         recyclerViewFlowers.setAdapter(flowerAdapter);
 
         db = FirebaseFirestore.getInstance();
-        fetchFlowers();
+
+        // Check if an intent with category extra is received
+        if (getIntent().hasExtra("category")) {
+            selectedCategory = getIntent().getStringExtra("category");
+            fetchFlowersByCategory(selectedCategory);
+        } else {
+            fetchFlowers(); // Fetch all flowers if no specific category is selected
+        }
 
         // Set the click listeners for edit and delete in the adapter
         flowerAdapter.setOnItemClickListener(new FlowerAdapter.OnItemClickListener() {
@@ -49,7 +58,43 @@ public class ViewFlower extends AppCompatActivity {
                 // Handle delete click
                 deleteFlower(position);
             }
+
+            @Override
+            public void onCategoryClick(int position) {
+                // Handle category click
+                navigateToCategorizedFlowers(position);
+            }
         });
+    }
+
+    private void fetchFlowersByCategory(String category) {
+        db.collection("flowers")
+                .whereEqualTo("flowerCategory", category)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        flowerList.clear(); // Clear the existing list
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Flower flower = document.toObject(Flower.class);
+                            flower.setId(document.getId());
+                            flowerList.add(flower);
+                        }
+                        flowerAdapter.notifyDataSetChanged();
+                    } else {
+                        // Handle errors
+                        Toast.makeText(ViewFlower.this, "Failed to fetch flowers", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void navigateToCategorizedFlowers(int position) {
+        Flower selectedFlower = flowerList.get(position);
+
+        if (selectedFlower != null) {
+            String category = selectedFlower.getFlowerCategory();
+            // Call the method to filter and display flowers based on the selected category
+            filterFlowersByCategory(category);
+        }
     }
 
     private void fetchFlowers() {
@@ -143,4 +188,18 @@ public class ViewFlower extends AppCompatActivity {
                     flowerAdapter.notifyItemInserted(position);
                 });
     }
+
+    private void filterFlowersByCategory(String category) {
+        List<Flower> filteredList = new ArrayList<>();
+
+        for (Flower flower : flowerList) {
+            if (flower.getFlowerCategory().equals(category)) {
+                filteredList.add(flower);
+            }
+        }
+
+        flowerAdapter.setFlowerList(filteredList);
+        flowerAdapter.notifyDataSetChanged();
+    }
+
 }

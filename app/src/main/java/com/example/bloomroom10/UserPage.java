@@ -20,7 +20,23 @@ public class UserPage extends AppCompatActivity {
         category_ds = findViewById(R.id.cd_id1);
         card_ds = findViewById(R.id.cd_id2);
 
+        follower_ds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the ViewFlower activity
+                Intent intent = new Intent(UserPage.this, ViewFlower.class);
+                startActivity(intent);
+            }
+        });
 
+        category_ds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the ViewFlower activity
+                Intent intent = new Intent(UserPage.this, ViewCategory.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

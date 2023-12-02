@@ -19,6 +19,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public interface OnItemClickListener {
         void onEditClick(int position);
         void onDeleteClick(int position);
+        void onCategoryClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -43,7 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.textViewCategoryName.setText(category.getName());
         holder.textViewCategoryDescription.setText(category.getDescription());
 
-        // Set click listeners for edit and delete buttons
+        // Set click listeners for edit, delete, and category buttons
         holder.buttonEdit.setOnClickListener(view -> {
             if (mListener != null) {
                 mListener.onEditClick(position);
@@ -53,6 +54,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.buttonDelete.setOnClickListener(view -> {
             if (mListener != null) {
                 mListener.onDeleteClick(position);
+            }
+        });
+
+        holder.itemView.setOnClickListener(view -> {
+            if (mListener != null) {
+                mListener.onCategoryClick(position);
             }
         });
     }

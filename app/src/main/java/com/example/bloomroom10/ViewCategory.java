@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +48,7 @@ public class ViewCategory extends AppCompatActivity {
             @Override
             public void onDeleteClick(int position) {
                 // Handle delete click
-                // Call your deleteCategory method or implement the logic here
+                deleteCategory(position);
             }
         });
     }
@@ -102,5 +104,30 @@ public class ViewCategory extends AppCompatActivity {
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         builder.show();
+    }
+
+    // Delete a category at the specified position
+    private void deleteCategory(int position) {
+        Category categoryToDelete = categoryList.get(position);
+
+        // Remove the category from the list
+        categoryList.remove(position);
+        categoryAdapter.notifyItemRemoved(position);
+
+        // Delete the category from Firestore
+        db.collection("categories")
+                .document(categoryToDelete.getId())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    // Handle successful deletion
+                    Toast.makeText(ViewCategory.this, "Category deleted successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    // Handle deletion failure
+                    Toast.makeText(ViewCategory.this, "Failed to delete category", Toast.LENGTH_SHORT).show();
+                    // If deletion fails, you might want to add the category back to the list
+                    categoryList.add(position, categoryToDelete);
+                    categoryAdapter.notifyItemInserted(position);
+                });
     }
 }

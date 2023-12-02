@@ -1,0 +1,10 @@
+<!-- res/values/arrays.xml -->
+<resources>
+    <string-array name="percentage_options">
+        <item>0 %</item>
+        <item>5 %</item>
+        <item>10 %</item>
+        <item>15 %</item>
+        <!-- Add more percentages as needed -->
+    </string-array>
+</resources>

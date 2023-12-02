@@ -1,0 +1,75 @@
+<!-- res/layout/activity_create_flower.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/editTextFlowerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flower Name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextFlowerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flower Description"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextFlowerPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flower Price"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editTextFlowerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flower Category"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextFlowerImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flower Image URL"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/imageViewSelectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/images" />
+
+        <Button
+            android:id="@+id/buttonSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Image" />
+
+        <Spinner
+            android:id="@+id/spinnerOfferPercentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/percentage_options"
+            android:prompt="@string/select_offer_percentage" />
+
+        <Button
+            android:id="@+id/buttonCreateFlower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Flower" />
+
+    </LinearLayout>
+</ScrollView>

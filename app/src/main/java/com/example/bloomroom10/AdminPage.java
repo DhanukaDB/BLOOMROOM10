@@ -16,6 +16,7 @@ public class AdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
 
         // Find the "Create Category" button by its ID
+        Button createFlowerButton = findViewById(R.id.cd_id01);
         Button createCategoryButton = findViewById(R.id.cd_id02);
         Button manageCategoryButton = findViewById(R.id.cd_id04);
 
@@ -36,6 +37,14 @@ public class AdminPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        createFlowerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(AdminPage.this, CreateFlowerActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Add similar code for other buttons if needed
     }

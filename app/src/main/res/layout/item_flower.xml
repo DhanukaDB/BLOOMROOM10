@@ -17,6 +17,26 @@
         android:layout_height="wrap_content"
         android:text="Flower Description" />
 
+    <TextView
+        android:id="@+id/textViewFlowerPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price" />
+
+    <TextView
+        android:id="@+id/textViewFlowerOffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Offer" />
+
+    <ImageView
+        android:id="@+id/imageViewFlowerImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/images" />
+
+
     <!-- Add other TextViews for additional fields -->
 
     <Button

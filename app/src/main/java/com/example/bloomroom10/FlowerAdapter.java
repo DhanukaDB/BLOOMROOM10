@@ -43,6 +43,9 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         Flower flower = flowers.get(position);
         holder.textViewFlowerName.setText(flower.getFlowerName());
         holder.textViewFlowerDescription.setText(flower.getFlowerDescription());
+        holder.textViewFlowerPrice.setText(String.valueOf((int) flower.getFlowerPrice()));
+//        holder.textViewFlowerOffer.setText(flower.getOfferPercentage());
+//        holder.imageViewFlowerImage.setText(flower.getFlowerImageUrl());
         // Add other fields as needed
 
         // Set click listeners for edit and delete buttons
@@ -67,6 +70,12 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
     public static class FlowerViewHolder extends RecyclerView.ViewHolder {
         TextView textViewFlowerName;
         TextView textViewFlowerDescription;
+
+        TextView textViewFlowerPrice;
+
+        TextView textViewFlowerOffer;
+
+        ImageView imageViewFlowerImage;
         Button buttonEdit;
         Button buttonDelete;
 
@@ -74,6 +83,9 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
             super(itemView);
             textViewFlowerName = itemView.findViewById(R.id.textViewFlowerName);
             textViewFlowerDescription = itemView.findViewById(R.id.textViewFlowerDescription);
+            textViewFlowerPrice = itemView.findViewById(R.id.textViewFlowerPrice);  // Add this line
+            textViewFlowerOffer = itemView.findViewById(R.id.textViewFlowerOffer);  // Add this line
+            imageViewFlowerImage = itemView.findViewById(R.id.imageViewFlowerImage);
             buttonEdit = itemView.findViewById(R.id.buttonEdit);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }

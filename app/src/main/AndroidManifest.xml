@@ -83,6 +83,7 @@
         <activity android:name=".CreateCategoryActivity" />
         <activity android:name=".ViewCategory" />
         <activity android:name=".CreateFlowerActivity" />
+        <activity android:name=".ViewFlower" />
     </application>
 
 </manifest>

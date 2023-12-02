@@ -5,6 +5,8 @@ import java.util.Map;
 // Flower.java
 
 public class Flower {
+
+    private String id;
     private String flowerName;
     private String flowerDescription;
     private double flowerPrice;
@@ -24,6 +26,14 @@ public class Flower {
         this.flowerCategory = flowerCategory;
         this.flowerImageUrl = flowerImageUrl;
         this.offerPercentage = offerPercentage;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     // Getter and Setter methods

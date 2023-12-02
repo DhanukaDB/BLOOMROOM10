@@ -1,4 +1,4 @@
-<!-- res/layout/item_flower.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,24 +9,26 @@
         android:id="@+id/textViewFlowerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:text="Flower Name" />
 
     <TextView
         android:id="@+id/textViewFlowerDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp"/>
+        android:text="Flower Description" />
 
-    <TextView
-        android:id="@+id/textViewFlowerPrice"
-        android:layout_width="match_parent"
+    <!-- Add other TextViews for additional fields -->
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp"/>
+        android:text="Edit" />
 
-    <!-- Add other TextViews or ImageViews for other flower properties -->
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
 
 </LinearLayout>

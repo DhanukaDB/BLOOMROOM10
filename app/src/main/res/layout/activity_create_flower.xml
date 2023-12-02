@@ -30,12 +30,20 @@
             android:hint="Flower Price"
             android:inputType="numberDecimal" />
 
-        <EditText
-            android:id="@+id/editTextFlowerCategory"
+        <TextView
+            android:id="@+id/textViewSelectCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Category:"
+            android:layout_below="@id/editTextFlowerImageUrl"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Flower Category"
-            android:inputType="text" />
+            android:layout_below="@id/textViewSelectCategory"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/editTextFlowerImageUrl"

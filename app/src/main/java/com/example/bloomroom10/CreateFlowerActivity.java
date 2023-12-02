@@ -2,6 +2,7 @@ package com.example.bloomroom10;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,13 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateFlowerActivity extends AppCompatActivity {
 
     private EditText editTextFlowerName;
     private EditText editTextFlowerDescription;
     private EditText editTextFlowerPrice;
-    private EditText editTextFlowerCategory;
+    private Spinner spinnerFlowerCategory;
     private EditText editTextFlowerImageUrl;
     private ImageView imageViewSelectedImage;
     private Button buttonSelectImage;
@@ -28,6 +34,7 @@ public class CreateFlowerActivity extends AppCompatActivity {
     private Button buttonCreateFlower;
 
     private FirebaseFirestore db;
+    private List<String> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +47,37 @@ public class CreateFlowerActivity extends AppCompatActivity {
         editTextFlowerName = findViewById(R.id.editTextFlowerName);
         editTextFlowerDescription = findViewById(R.id.editTextFlowerDescription);
         editTextFlowerPrice = findViewById(R.id.editTextFlowerPrice);
-        editTextFlowerCategory = findViewById(R.id.editTextFlowerCategory);
+        spinnerFlowerCategory = findViewById(R.id.spinnerCategory);
         editTextFlowerImageUrl = findViewById(R.id.editTextFlowerImageUrl);
         imageViewSelectedImage = findViewById(R.id.imageViewSelectedImage);
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
         spinnerOfferPercentage = findViewById(R.id.spinnerOfferPercentage);
         buttonCreateFlower = findViewById(R.id.buttonCreateFlower);
+
+        categoryList = new ArrayList<>();
+
+        // Fetch categories from Firestore
+        db.collection("categories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String categoryName = document.toObject(Category.class).getName();
+                                categoryList.add(categoryName);
+                            }
+
+                            // Populate spinner with categories
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(CreateFlowerActivity.this, android.R.layout.simple_spinner_item, categoryList);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerFlowerCategory.setAdapter(adapter);
+                        } else {
+                            // Handle failure
+                            Toast.makeText(CreateFlowerActivity.this, "Failed to fetch categories", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
         buttonCreateFlower.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +91,7 @@ public class CreateFlowerActivity extends AppCompatActivity {
         String flowerName = editTextFlowerName.getText().toString().trim();
         String flowerDescription = editTextFlowerDescription.getText().toString().trim();
         String flowerPrice = editTextFlowerPrice.getText().toString().trim();
-        String flowerCategory = editTextFlowerCategory.getText().toString().trim();
+        String flowerCategory = spinnerFlowerCategory.getSelectedItem().toString().trim();
         String flowerImageUrl = editTextFlowerImageUrl.getText().toString().trim();
         String offerPercentage = spinnerOfferPercentage.getSelectedItem().toString();
 

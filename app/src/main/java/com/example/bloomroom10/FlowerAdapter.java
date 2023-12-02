@@ -44,7 +44,8 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         holder.textViewFlowerName.setText(flower.getFlowerName());
         holder.textViewFlowerDescription.setText(flower.getFlowerDescription());
         holder.textViewFlowerPrice.setText(String.valueOf((int) flower.getFlowerPrice()));
-//        holder.textViewFlowerOffer.setText(flower.getOfferPercentage());
+        holder.textViewFlowerOffer.setText(flower.getOfferPercentage());
+        holder.textViewFlowerCategory.setText(flower.getFlowerCategory());
 //        holder.imageViewFlowerImage.setText(flower.getFlowerImageUrl());
         // Add other fields as needed
 
@@ -67,6 +68,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         return flowers.size();
     }
 
+
     public static class FlowerViewHolder extends RecyclerView.ViewHolder {
         TextView textViewFlowerName;
         TextView textViewFlowerDescription;
@@ -74,6 +76,8 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         TextView textViewFlowerPrice;
 
         TextView textViewFlowerOffer;
+
+        TextView textViewFlowerCategory;
 
         ImageView imageViewFlowerImage;
         Button buttonEdit;
@@ -83,8 +87,9 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
             super(itemView);
             textViewFlowerName = itemView.findViewById(R.id.textViewFlowerName);
             textViewFlowerDescription = itemView.findViewById(R.id.textViewFlowerDescription);
-            textViewFlowerPrice = itemView.findViewById(R.id.textViewFlowerPrice);  // Add this line
-            textViewFlowerOffer = itemView.findViewById(R.id.textViewFlowerOffer);  // Add this line
+            textViewFlowerPrice = itemView.findViewById(R.id.textViewFlowerPrice);
+            textViewFlowerCategory = itemView.findViewById(R.id.textViewFlowerCategory);
+            textViewFlowerOffer = itemView.findViewById(R.id.textViewFlowerOffer);
             imageViewFlowerImage = itemView.findViewById(R.id.imageViewFlowerImage);
             buttonEdit = itemView.findViewById(R.id.buttonEdit);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);

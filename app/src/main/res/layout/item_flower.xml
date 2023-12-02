@@ -24,6 +24,12 @@
         android:text="Price" />
 
     <TextView
+        android:id="@+id/textViewFlowerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Category" />
+
+    <TextView
         android:id="@+id/textViewFlowerOffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

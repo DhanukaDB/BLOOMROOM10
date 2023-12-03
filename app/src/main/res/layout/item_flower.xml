@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/textViewFlowerName"
@@ -81,6 +83,12 @@
             android:text="Delete"
             android:textColor="@android:color/white"
             android:layout_marginStart="8dp"/>
+
+        <Button
+            android:id="@+id/buttonOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order" />
     </LinearLayout>
 
 </LinearLayout>

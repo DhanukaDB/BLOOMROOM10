@@ -72,6 +72,10 @@ public class ViewFlower extends AppCompatActivity {
                 // Handle category click
                 navigateToCategorizedFlowers(position);
             }
+            public void onOrderClick(int position) {
+                // Handle order click
+                placeOrder(position);
+            }
         });
     }
 
@@ -102,6 +106,19 @@ public class ViewFlower extends AppCompatActivity {
             String category = selectedFlower.getFlowerCategory();
             // Call the method to filter and display flowers based on the selected category
             filterFlowersByCategory(category);
+        }
+    }
+
+    private void placeOrder(int position) {
+        Flower selectedFlower = flowerList.get(position);
+
+        if (selectedFlower != null) {
+            // Pass flower details to the Order class
+            Intent intent = new Intent(ViewFlower.this, OrderActivity.class);
+            intent.putExtra("flowerName", selectedFlower.getFlowerName());
+            intent.putExtra("flowerOffer", selectedFlower.getOfferPercentage());
+            // Add other details as needed
+            startActivity(intent);
         }
     }
 

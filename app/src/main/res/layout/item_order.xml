@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewOrderFlowerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Flower Name" />
+
+    <TextView
+        android:id="@+id/textViewOrderFlowerOffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Offer" />
+
+    <TextView
+        android:id="@+id/textViewCustomerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customer Name" />
+
+    <TextView
+        android:id="@+id/textViewContactNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Number" />
+
+    <TextView
+        android:id="@+id/textViewCustomerAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customer Address" />
+
+    <TextView
+        android:id="@+id/textViewOrderStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Status" />
+
+</LinearLayout>

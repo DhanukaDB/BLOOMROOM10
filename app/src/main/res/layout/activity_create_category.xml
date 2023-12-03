@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewCategoryTitle"
         android:layout_marginTop="16dp"
-        android:hint="Category Name"/>
+        android:hint="Category Name"
+        android:inputType="textCapSentences"/>
 
     <EditText
         android:id="@+id/editTextCategoryDescription"
@@ -31,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextCategoryName"
         android:layout_marginTop="16dp"
-        android:hint="Category Description"/>
+        android:hint="Category Description"
+        android:inputType="textCapSentences"/>
 
     <Button
         android:id="@+id/buttonCreateCategory"
@@ -39,5 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextCategoryDescription"
         android:layout_marginTop="24dp"
-        android:text="Create Category"/>
+        android:text="Create Category"
+        android:backgroundTint="@color/colorAccent1"/>
 </RelativeLayout>

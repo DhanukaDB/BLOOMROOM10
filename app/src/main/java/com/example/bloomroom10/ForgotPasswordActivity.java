@@ -2,11 +2,6 @@ package com.example.bloomroom10;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -19,6 +14,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -49,6 +49,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements Adapter
         retrieve.setBackgroundColor(Color.BLUE);
         back.setBackgroundColor(Color.BLUE);
 
+        // Populate the spinner with choices
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.security_questions_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(this);
 
         back.setOnClickListener(v -> {
@@ -59,21 +64,32 @@ public class ForgotPasswordActivity extends AppCompatActivity implements Adapter
             String ans = answer.getText().toString();
             String secQue = question.getText().toString();
 
-           /* if (user.equals("") || ans.equals("")) {
+            if (user.equals("") || ans.equals("")) {
                 Toast.makeText(ForgotPasswordActivity.this, "You are missing username/answer field", Toast.LENGTH_SHORT).show();
             } else {
-                Cursor cursor = fStore.viewPassword(user, ans, secQue);
+                // Reference to the "users" collection in Firestore
+                DocumentReference userDocumentRef = fStore.collection("User").document(user);
 
-                if (cursor.getCount() != 0) {
-                    Toast.makeText(ForgotPasswordActivity.this, "Username and Answer are matched", Toast.LENGTH_SHORT).show();
+                userDocumentRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // Document found, retrieve the password or other data as needed
+                            String retrievedPassword = document.getString("password");
 
-                    cursor.moveToNext();
-                    password.setText(cursor.getString(1));
-                } else {
-                    Toast.makeText(ForgotPasswordActivity.this, "Invalid Username or Answer or Security Question. Try Again!", Toast.LENGTH_SHORT).show();
-                }
-            }*/
+                            Toast.makeText(ForgotPasswordActivity.this, "Username and Answer are matched", Toast.LENGTH_SHORT).show();
+                            password.setText(retrievedPassword);
+                        } else {
+                            Toast.makeText(ForgotPasswordActivity.this, "Invalid Username or Answer or Security Question. Try Again!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(ForgotPasswordActivity.this, "Error retrieving data from Firestore", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+            }
         });
+
     }
 
     @Override

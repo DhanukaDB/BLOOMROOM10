@@ -18,17 +18,24 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
     private OnItemClickListener mListener;
     private boolean isAdmin;
 
+
+
+
+
     public interface OnItemClickListener {
         void onEditClick(int position);
 
         void onDeleteClick(int position);
 
         void onCategoryClick(int position);
+
+        void onOrderClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
 
     public FlowerAdapter(Context context, List<Flower> flowers) {
         this.context = context;
@@ -78,6 +85,13 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
             }
         });
 
+        holder.buttonOrder.setOnClickListener(view -> {
+            if (mListener != null) {
+                mListener.onOrderClick(position);
+            }
+        });
+
+
         holder.itemView.setOnClickListener(view -> {
             if (mListener != null) {
                 mListener.onCategoryClick(position);
@@ -104,6 +118,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         ImageView imageViewFlowerImage;
         Button buttonEdit;
         Button buttonDelete;
+        Button buttonOrder;
         Button buttonCategory;
 
         public FlowerViewHolder(@NonNull View itemView, OnItemClickListener listener) {
@@ -116,6 +131,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
             imageViewFlowerImage = itemView.findViewById(R.id.imageViewFlowerImage);
             buttonEdit = itemView.findViewById(R.id.buttonEdit);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
+            buttonOrder = itemView.findViewById(R.id.buttonOrder);
 
             buttonEdit.setOnClickListener(v -> {
                 if (listener != null) {
@@ -131,6 +147,15 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         listener.onDeleteClick(position);
+                    }
+                }
+            });
+
+            buttonOrder.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onOrderClick(position);
                     }
                 }
             });

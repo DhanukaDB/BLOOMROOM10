@@ -36,6 +36,7 @@
         <activity android:name=".CreateFlowerActivity" />
         <activity android:name=".ViewFlower" />
         <activity android:name=".UserViewFlower" />
+        <activity android:name=".OrderActivity" />
     </application>
 
 </manifest>

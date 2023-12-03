@@ -24,7 +24,7 @@ public class UserPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start the ViewFlower activity
-                Intent intent = new Intent(UserPage.this, UserViewFlower.class);
+                Intent intent = new Intent(UserPage.this, ViewFlower.class);
                 startActivity(intent);
             }
         });

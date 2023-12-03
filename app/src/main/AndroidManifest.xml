@@ -35,6 +35,7 @@
         <activity android:name=".ViewCategory" />
         <activity android:name=".CreateFlowerActivity" />
         <activity android:name=".ViewFlower" />
+        <activity android:name=".UserViewFlower" />
     </application>
 
 </manifest>

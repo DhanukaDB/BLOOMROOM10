@@ -121,14 +121,19 @@ public class Login extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Log.d("TAG", "onSuccess" + documentSnapshot.getData());
 
-                if (documentSnapshot.getString("is Admin") != null){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                if (documentSnapshot.getBoolean("isAdmin") != null) {
+                    boolean isAdmin = documentSnapshot.getBoolean("isAdmin");
+                    startViewFlowerActivity(isAdmin);
                 }
             }
         });
+    }
 
-
+    private void startViewFlowerActivity(boolean isAdmin) {
+        Intent intent = new Intent(Login.this, ViewFlower.class);
+        intent.putExtra("isAdmin", isAdmin);
+        startActivity(intent);
+        finish();
     }
 
     public boolean checkField(EditText editTextValue) {

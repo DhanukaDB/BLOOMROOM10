@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -111,7 +112,25 @@ public class Login extends AppCompatActivity {
         String defaultAdminEmail = "admin@gmail.com";
         String defaultAdminPassword = "admin123";
 
-        return TextUtils.equals(email, defaultAdminEmail)&& TextUtils.equals(password, defaultAdminPassword);
+        saveEmailToLocalStorage(email);
+
+        if (TextUtils.equals(email, defaultAdminEmail) && TextUtils.equals(password, defaultAdminPassword)) {
+            // If matches, start the AdminPage activity
+            startActivity(new Intent(getApplicationContext(), AdminPage.class));
+            finish();
+            return true;
+        } else {
+            // If not matches, return false
+            return false;
+        }
+    }
+
+    private void saveEmailToLocalStorage(String email) {
+        // Use SharedPreferences to save the email locally
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("adminEmail", email);
+        editor.apply();
     }
     private void checkUserAccessLevel(String uid) {
         DocumentReference df = fStore.collection("User").document(uid);

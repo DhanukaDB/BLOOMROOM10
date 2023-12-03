@@ -1,6 +1,7 @@
 package com.example.bloomroom10;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category category = categories.get(position);
         holder.textViewCategoryName.setText(category.getName());
         holder.textViewCategoryDescription.setText(category.getDescription());
+
+        // Get the email from SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("adminEmail", "");
+
+        if (userEmail.equals("admin@gmail.com")) {
+            holder.buttonEdit.setVisibility(View.VISIBLE);
+            holder.buttonDelete.setVisibility(View.VISIBLE);
+        } else {
+            holder.buttonEdit.setVisibility(View.GONE);
+            holder.buttonDelete.setVisibility(View.GONE);
+        }
+
 
         // Set click listeners for edit, delete, and category buttons
         holder.buttonEdit.setOnClickListener(view -> {

@@ -18,7 +18,6 @@ public class UserPage extends AppCompatActivity {
 
         follower_ds = findViewById(R.id.cd_id);
         category_ds = findViewById(R.id.cd_id1);
-        card_ds = findViewById(R.id.cd_id2);
 
         follower_ds.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,9 @@
 package com.example.bloomroom10;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +36,13 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         void onOrderClick(int position);
     }
 
+    private SharedPreferences getSharedPreferences() {
+        return context.getSharedPreferences("MyPrefs", MODE_PRIVATE);
+    }
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
 
 
     public FlowerAdapter(Context context, List<Flower> flowers) {
@@ -71,7 +78,11 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
                 .into(holder.imageViewFlowerImage);
         // Set other fields as needed
 
-        if (isAdmin) {
+        // Get the email from SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("adminEmail", "");
+
+        if (userEmail.equals("admin@gmail.com")) {
             holder.buttonEdit.setVisibility(View.VISIBLE);
             holder.buttonDelete.setVisibility(View.VISIBLE);
         } else {

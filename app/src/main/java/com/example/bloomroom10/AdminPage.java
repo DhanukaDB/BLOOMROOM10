@@ -10,6 +10,8 @@ import com.example.bloomroom10.CreateCategoryActivity;
 
 public class AdminPage extends AppCompatActivity {
 
+    private boolean isAdmin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +31,17 @@ public class AdminPage extends AppCompatActivity {
             public void onClick(View view) {
                 // Define the logic to start the new activity (ActivityCreateCategory)
                 Intent intent = new Intent(AdminPage.this, ViewOrder.class);
+                intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
             }
         });
+
         createCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Define the logic to start the new activity (ActivityCreateCategory)
                 Intent intent = new Intent(AdminPage.this, CreateCategoryActivity.class);
+                intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
             }
         });
@@ -45,14 +50,17 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminPage.this, ViewCategory.class);
+                intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
             }
         });
+
 
         createFlowerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminPage.this, CreateFlowerActivity.class);
+                intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
             }
         });
@@ -61,9 +69,16 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminPage.this, ViewFlower.class);
+                intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
             }
         });
         // Add similar code for other buttons if needed
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isAdmin = getIntent().getBooleanExtra("isAdmin", false);  // default to false if not provided
     }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import com.bumptech.glide.Glide;
 
 public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerViewHolder> {
 
@@ -62,6 +63,12 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
         holder.textViewFlowerPrice.setText(String.valueOf((int) flower.getFlowerPrice()));
         holder.textViewFlowerOffer.setText(flower.getOfferPercentage());
         holder.textViewFlowerCategory.setText(flower.getFlowerCategory());
+        Glide.with(holder.imageViewFlowerImage.getContext())
+                .load(flower.getFlowerImageUrl())
+                .placeholder(R.drawable.images)
+                //.circleCrop()
+                .error(R.drawable.images)
+                .into(holder.imageViewFlowerImage);
         // Set other fields as needed
 
         if (isAdmin) {

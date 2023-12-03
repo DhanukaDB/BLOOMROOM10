@@ -1,7 +1,8 @@
-<!-- res/layout/activity_create_flower.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,61 +10,115 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTextFlowerName"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Flower Name"
-            android:inputType="text" />
+            android:text="Add Flower Details"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
 
-        <EditText
-            android:id="@+id/editTextFlowerDescription"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/flowerNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Flower Description"
-            android:inputType="text" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editTextFlowerPrice"
+            <EditText
+                android:id="@+id/editTextFlowerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Flower Name"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/flowerDescriptionLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Flower Price"
-            android:inputType="numberDecimal" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextFlowerDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Flower Details"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/flowerPriceLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextFlowerPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Flower Price"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Repeat the above TextInputLayout for other EditText fields -->
 
         <TextView
             android:id="@+id/textViewSelectCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Category:"
-            android:layout_below="@id/editTextFlowerImageUrl"
+            android:textColor="#333333"
             android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewSelectCategory"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:background="#FFFFFF" />
 
-        <EditText
-            android:id="@+id/editTextFlowerImageUrl"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/flowerImageUrlLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Flower Image URL"
-            android:inputType="text" />
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/editTextFlowerImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Flower Image URL"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/imageViewSelectedImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/images" />
+            android:src="@drawable/images"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/buttonSelectImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Image" />
+            android:text="Select Image"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorAccent1"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/textViewSelectOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Offer Percentage"
+            android:textColor="#333333"
+            android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerOfferPercentage"
@@ -71,13 +126,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:entries="@array/percentage_options"
-            android:prompt="@string/select_offer_percentage" />
+            android:prompt="@string/select_offer_percentage"
+            android:background="#FFFFFF"/>
 
         <Button
             android:id="@+id/buttonCreateFlower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Flower" />
-
+            android:text="Add New Flower"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorAccent1"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </ScrollView>

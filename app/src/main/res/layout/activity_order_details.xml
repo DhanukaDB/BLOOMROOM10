@@ -4,41 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+
+    android:background="@drawable/back_image_6">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Your Order"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/textViewFlowerNameOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flower Name" />
+        android:text="Flower Name"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewFlowerOfferOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Offer" />
+        android:text="Offer"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextCustomerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Customer Name"/>
+        android:hint="Customer Name"
+        android:background="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextContactNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contact Number"/>
+        android:hint="Contact Number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:background="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextCustomerAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Customer Address"/>
+        android:hint="Customer Address"
+        android:inputType="textCapSentences"
+        android:background="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonPlaceOrder"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Place Order"/>
+        android:text="Place Order"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/colorAccent1"/>
 </LinearLayout>

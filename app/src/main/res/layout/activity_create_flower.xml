@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Flower Details"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="#333333"
             android:gravity="center"

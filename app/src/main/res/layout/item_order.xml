@@ -1,46 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/rounded_corner_background">
+
 
     <TextView
         android:id="@+id/textViewOrderFlowerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flower Name" />
+        android:text="Flower Name"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewOrderFlowerOffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Offer" />
+        android:text="Offer"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewCustomerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer Name" />
+        android:text="Customer Name"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewContactNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contact Number" />
+        android:text="Contact Number"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewCustomerAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer Address" />
+        android:text="Customer Address"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textViewOrderStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Order Status" />
-
+        android:text="Order Status"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 </LinearLayout>

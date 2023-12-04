@@ -1,5 +1,7 @@
 package com.example.bloomroom10;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,15 +15,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.annotation.Nullable;
+
 
 public class CreateFlowerActivity extends AppCompatActivity {
+
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     private EditText editTextFlowerName;
     private EditText editTextFlowerDescription;
@@ -85,6 +96,71 @@ public class CreateFlowerActivity extends AppCompatActivity {
                 createFlower();
             }
         });
+
+        buttonSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+
+
+    }
+
+    private void openGallery() {
+        // Create an Intent to pick an image from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            // Get the selected image URI
+            Uri imageUri = data.getData();
+
+            // Display the selected image
+            imageViewSelectedImage.setImageURI(imageUri);
+
+            // You can now upload the image to Firebase Storage
+            uploadImageToFirebase(imageUri);
+        }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        // TODO: Implement Firebase Storage upload logic here
+
+        // Get a reference to the Firebase Storage location
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images/" + System.currentTimeMillis() + ".jpg");
+
+        // Upload the file to Firebase Storage
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Image uploaded successfully
+                        // Now, you can get the download URL for the image
+                        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri downloadUri) {
+                                // Now you have the download URL, you can save it to Firebase Firestore or use it as needed
+                                String imageUrl = downloadUri.toString();
+                                // Save the URL to Firestore or use it in any other way
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(CreateFlowerActivity.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void createFlower() {
